@@ -1,0 +1,59 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: intellidlp-backend
+  profiles:
+    active: dev
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/intellidlp_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 300000
+      pool-name: IntelliDLPHikariPool
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          batch_size: 25
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+      enabled: true
+
+# Security & JWT Configuration
+intellidlp:
+  security:
+    jwt:
+      # 256-bit base64-encoded secret key for HS256 HMAC
+      secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+      expiration-ms: 86400000 # 24 hours
+      refresh-expiration-ms: 604800000 # 7 days
+  monitoring:
+    debounce-ms: 500
+    auto-scan-on-startup: true
+    approved-roots:
+      - C:\IPS\data_loss_prevention\test-monitored-folders\finance-drop
+      - C:\IPS\data_loss_prevention\test-monitored-folders\hr-drop
+  ai:
+    provider: ollama
+    ollama-url: ${OLLAMA_URL:http://localhost:11434}
+    model: ${OLLAMA_MODEL:llama3.2:latest}
+    enabled: true
+

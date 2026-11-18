@@ -1,0 +1,57 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Node.js
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+
+
+# Database files
+*.mv.db
+*.trace.db
+*.sqlite
+*.sqlite3
+*.db
+
+# Java build output
+backend/target/
+
+# Frontend dependencies
+frontend/node_modules/
+
+# Runtime data
+backend/data/

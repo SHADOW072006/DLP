@@ -1,0 +1,10 @@
+import api from './client';
+export const getEndpoints = (params) => api.get('/endpoints', { params });
+export const getEndpointById = (id) => api.get(`/endpoints/${id}`);
+export const approveEndpoint = (id) => api.put(`/endpoints/${id}/approve`);
+export const rejectEndpoint = (id) => api.put(`/endpoints/${id}/reject`);
+export const suspendEndpoint = (id) => api.put(`/endpoints/${id}/suspend`);
+export const assignDepartment = (id, departmentId) => api.put(`/endpoints/${id}/department`, { departmentId });
+export const issueCommand = (id, command) => api.post(`/endpoints/${id}/commands`, { command });
+export const getCommands = (id) => api.get(`/endpoints/${id}/commands`);
+export const updateEndpoint = (id, data) => api.put(`/endpoints/${id}`, data);
